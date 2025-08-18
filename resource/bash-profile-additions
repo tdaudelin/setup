@@ -1,0 +1,90 @@
+# add /usr/local/bin to path
+export PATH="/usr/local/bin:$PATH"
+
+# Desired CLI colors
+export CLICOLOR=1
+
+# Desired ls colors
+export LSCOLORS=ExFxBxDxCxegedabagacad
+
+# History Settings
+export HISTSIZE=2000000                  # Max history per shell
+export HISTFILESIZE=2000000              # Max lines stored for all shells
+shopt -s histappend
+shopt -s cmdhist                         # Combine multiline commands into one in history
+export HISTCONTROL=ignoredups            # Ignore duplicates.
+export HISTIGNORE="&:ls:[bf]g:exit"      # ls without options and builtin commands
+export HISTCONTROL=ignorespace           # Commands with leading space do not get added to history
+shopt -s histappend                      # Useful for sensitive commands
+
+ulimit -n 2000
+
+# QOL Aliases bash_profile commands
+alias reload="source ~/.profile && source ~/.bash_profile"      # reload bash profile files
+
+alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+
+alias clean_bash='bash --noprofile --norc'  # command to make a clean bash file with no .bash_profile or custom settings
+alias downloads='cd $HOME/Downloads'        # shortcut to downloads
+alias desktop='cd $HOME/Desktop'            # Shortcut to desktop
+alias dev='cd $HOME/dev'                    # Shortcut to development workstation
+
+alias ls='ls -GFhA'                         # Preferred ls
+alias ll='ls -FGlAhp'                       # Preferred ll
+alias lltr='ls -FGlAhptr'                   # ls with desired output sorted in descending order of time
+alias llr='ls -FGlAhpt'                     # ls with desired output in reverse
+alias l='ls'                                # ls
+alias grep='grep --color'                   # default grep to have colors
+alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
+alias ..='cd ../'                           # Go back 1 directory level
+alias ...='cd ../../'                       # Go back 2 directory levels
+alias ~='cd ~'                              # ~:            Go Home
+alias which='type -all'                     # which:        Find executables
+
+
+# CLI Fucntions
+
+
+### Lazy history - history wrapped in grep
+function h(){
+  if [[ -z $1 ]]; then
+    history
+  else
+    history | grep --color  $1
+  fi
+}
+
+### Colorize man pagesS
+man() {
+  env LESS_TERMCAP_mb=$'\E[01;31m' \
+  LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+  LESS_TERMCAP_me=$'\E[0m' \
+  LESS_TERMCAP_se=$'\E[0m' \
+  LESS_TERMCAP_so=$'\E[38;5;246m' \
+  LESS_TERMCAP_ue=$'\E[0m' \
+  LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+  man "$@"
+}
+
+### Extracting method
+extract () {
+    if [ -f $1 ] ; then
+      case $1 in
+        *.tar.bz2)   tar xjf $1     ;;
+        *.tar.gz)    tar xzf $1     ;;
+        *.bz2)       bunzip2 $1     ;;
+        *.rar)       unrar e $1     ;;
+        *.gz)        gunzip $1      ;;
+        *.tar)       tar xf $1      ;;
+        *.tbz2)      tar xjf $1     ;;
+        *.tgz)       tar xzf $1     ;;
+        *.zip)       unzip $1       ;;
+        *.Z)         uncompress $1  ;;
+        *.7z)        7z x $1        ;;
+        *)     echo "'$1' cannot be extracted via extract()" ;;
+         esac
+     else
+         echo "'$1' is not a valid file"
+     fi
+}
