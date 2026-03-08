@@ -18,16 +18,20 @@ function install_emacs() {
 function casks_setup() {
   print_header "Casks"
   print_info "Installing various tools and casks..."
-  brew install svn # needed for Source Code Pro font install for Spacemacs
+
   # would be nice to make this interactive so I can check from a list vs install all
   brew install awscli
   brew install jq
-  brew install --cask docker \
-      google-cloud-sdk \
+  brew install mise
+  brew install --cask \
+      docker \
       jetbrains-toolbox \
       mongodb-compass \
-      postman \
+      insomnia \
       visual-studio-code
+
+      # removed casks....
+      # google-cloud-sdk \
       # google-chrome # uncomment if needed, usually already installed and will error if found
-  install_emacs
+  # install_emacs
 }
