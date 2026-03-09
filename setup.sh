@@ -32,6 +32,7 @@ TOOLS=(
   "azure-cli|Azure CLI|Command-line interface for Microsoft Azure"
   "gcloud-cli|Google Cloud CLI|Command-line interface for Google Cloud Platform"
   "jq|jq|Lightweight command-line JSON processor"
+  "git|git|Latest git from Homebrew (replaces outdated macOS default)"
 )
 
 # ---------------------------------------------------------------------------
