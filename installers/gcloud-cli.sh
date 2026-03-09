@@ -11,16 +11,16 @@ install_gcloud-cli() {
   if command -v gcloud &>/dev/null; then
     log_ok "Google Cloud CLI already installed ($(gcloud version --format='value(Google Cloud SDK)' 2>/dev/null)) — updating..."
     brew upgrade --cask google-cloud-sdk
-    return
+  else
+    log_info "Installing Google Cloud CLI..."
+    brew install --cask google-cloud-sdk
   fi
 
-  log_info "Installing Google Cloud CLI..."
-  brew install --cask google-cloud-sdk
-
-  if command -v gcloud &>/dev/null; then
-    log_ok "Google Cloud CLI installed successfully."
-  else
+  if ! command -v gcloud &>/dev/null; then
     log_error "Google Cloud CLI installation failed — 'gcloud' not found in PATH."
     return 1
   fi
+
+  log_ok "Google Cloud CLI installed successfully — $(gcloud version --format='value(Google Cloud SDK)' 2>/dev/null)."
+  ensure_omz_plugin "gcloud"
 }

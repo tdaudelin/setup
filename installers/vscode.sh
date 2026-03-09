@@ -11,19 +11,18 @@ install_vscode() {
   if [[ -d "/Applications/Visual Studio Code.app" ]]; then
     log_ok "VS Code already installed — updating..."
     brew upgrade --cask visual-studio-code
-    return
+  else
+    log_info "Installing Visual Studio Code..."
+    brew install --cask visual-studio-code
   fi
 
-  log_info "Installing Visual Studio Code..."
-  brew install --cask visual-studio-code
-
-  if [[ -d "/Applications/Visual Studio Code.app" ]]; then
-    log_ok "VS Code installed successfully."
-    _vscode_install_cli
-  else
+  if [[ ! -d "/Applications/Visual Studio Code.app" ]]; then
     log_error "VS Code installation failed — app not found in /Applications."
     return 1
   fi
+
+  _vscode_install_cli
+  log_ok "VS Code installed successfully — $(code --version | head -1)."
 }
 
 _vscode_install_cli() {

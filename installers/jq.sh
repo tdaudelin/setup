@@ -11,16 +11,15 @@ install_jq() {
   if command -v jq &>/dev/null; then
     log_ok "jq already installed ($(jq --version)) — updating..."
     brew upgrade jq
-    return
+  else
+    log_info "Installing jq..."
+    brew install jq
   fi
 
-  log_info "Installing jq..."
-  brew install jq
-
-  if command -v jq &>/dev/null; then
-    log_ok "jq installed ($(jq --version))."
-  else
+  if ! command -v jq &>/dev/null; then
     log_error "jq installation failed — 'jq' not found in PATH."
     return 1
   fi
+
+  log_ok "jq installed successfully — $(jq --version)."
 }

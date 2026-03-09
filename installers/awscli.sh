@@ -11,16 +11,16 @@ install_awscli() {
   if command -v aws &>/dev/null; then
     log_ok "AWS CLI already installed ($(aws --version 2>&1)) — updating..."
     brew upgrade awscli
-    return
+  else
+    log_info "Installing AWS CLI..."
+    brew install awscli
   fi
 
-  log_info "Installing AWS CLI..."
-  brew install awscli
-
-  if command -v aws &>/dev/null; then
-    log_ok "AWS CLI installed ($(aws --version 2>&1))."
-  else
+  if ! command -v aws &>/dev/null; then
     log_error "AWS CLI installation failed — 'aws' not found in PATH."
     return 1
   fi
+
+  log_ok "AWS CLI installed successfully — $(aws --version 2>&1)."
+  ensure_omz_plugin "aws"
 }

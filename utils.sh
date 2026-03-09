@@ -22,6 +22,44 @@ log_info()  { printf "${CYAN}[INFO]${RESET}  %s\n" "$*"; }
 log_ok()    { printf "${GREEN}[ OK ]${RESET}  %s\n" "$*"; }
 
 # ---------------------------------------------------------------------------
+# .zshrc helpers
+# ---------------------------------------------------------------------------
+
+# ensure_omz_plugin <plugin>
+#
+# Adds <plugin> to the plugins=(...) line in ~/.zshrc if not already present.
+# Requires Oh My Zsh to be installed first.
+ensure_omz_plugin() {
+  local plugin="$1"
+  local zshrc="$HOME/.zshrc"
+
+  if [[ ! -f "$zshrc" ]]; then
+    log_warn "~/.zshrc not found — cannot add plugin '$plugin'."
+    return 1
+  fi
+
+  if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
+    log_warn "Oh My Zsh is not installed — cannot add plugin '$plugin'."
+    return 1
+  fi
+
+  # Already present — nothing to do
+  if grep -qE "plugins=\([^)]*\b${plugin}\b[^)]*\)" "$zshrc"; then
+    log_ok "Oh My Zsh plugin '$plugin' already enabled."
+    return
+  fi
+
+  # Append plugin name inside the existing single-line plugins=(...) entry
+  sed -i '' "s/^plugins=(\(.*\))$/plugins=(\1 ${plugin})/" "$zshrc"
+
+  if grep -qE "plugins=\([^)]*\b${plugin}\b[^)]*\)" "$zshrc"; then
+    log_ok "Oh My Zsh plugin '$plugin' enabled in ~/.zshrc."
+  else
+    log_warn "Could not add plugin '$plugin' — plugins=(...) line may span multiple lines."
+  fi
+}
+
+# ---------------------------------------------------------------------------
 # Terminal helpers
 # ---------------------------------------------------------------------------
 

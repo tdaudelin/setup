@@ -11,16 +11,15 @@ install_insomnia() {
   if [[ -d "/Applications/Insomnia.app" ]]; then
     log_ok "Insomnia already installed — updating..."
     brew upgrade --cask insomnia
-    return
+  else
+    log_info "Installing Insomnia..."
+    brew install --cask insomnia
   fi
 
-  log_info "Installing Insomnia..."
-  brew install --cask insomnia
-
-  if [[ -d "/Applications/Insomnia.app" ]]; then
-    log_ok "Insomnia installed successfully."
-  else
+  if [[ ! -d "/Applications/Insomnia.app" ]]; then
     log_error "Insomnia installation failed — app not found in /Applications."
     return 1
   fi
+
+  log_ok "Insomnia installed successfully."
 }

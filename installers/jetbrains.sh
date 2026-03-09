@@ -11,16 +11,15 @@ install_jetbrains() {
   if [[ -d "/Applications/JetBrains Toolbox.app" ]]; then
     log_ok "JetBrains Toolbox already installed — updating..."
     brew upgrade --cask jetbrains-toolbox
-    return
+  else
+    log_info "Installing JetBrains Toolbox..."
+    brew install --cask jetbrains-toolbox
   fi
 
-  log_info "Installing JetBrains Toolbox..."
-  brew install --cask jetbrains-toolbox
-
-  if [[ -d "/Applications/JetBrains Toolbox.app" ]]; then
-    log_ok "JetBrains Toolbox installed successfully."
-  else
+  if [[ ! -d "/Applications/JetBrains Toolbox.app" ]]; then
     log_error "JetBrains Toolbox installation failed — app not found in /Applications."
     return 1
   fi
+
+  log_ok "JetBrains Toolbox installed successfully."
 }

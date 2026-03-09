@@ -46,15 +46,32 @@ if run_menu "Mac Setup — Tool Menu" "${TOOLS[@]}"; then
   done
   printf "\n"
 
+  INSTALLED=()
+
   for key in "${MENU_SELECTED[@]}"; do
     installer="$SCRIPT_DIR/installers/${key}.sh"
     if [[ -f "$installer" ]]; then
       source "$installer"
       "install_${key}"
+      INSTALLED+=( "$key" )
     else
       log_error "No installer found for: $key"
+      exit 1
     fi
   done
+
+  printf "\n"
+  printf "${BOLD}=============================${RESET}\n"
+  printf "${BOLD}  Setup Summary              ${RESET}\n"
+  printf "${BOLD}=============================${RESET}\n"
+  printf "\n"
+  printf "${GREEN}Installed successfully:${RESET}\n"
+  for key in "${INSTALLED[@]}"; do
+    printf "    ${GREEN}✓${RESET} %s\n" "$key"
+  done
+  printf "\n"
+  printf "${YELLOW}Please close and restart your shell for all changes to take effect.${RESET}\n"
+  printf "\n"
 else
   log_info "Exiting. Nothing was installed."
 fi

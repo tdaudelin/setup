@@ -11,16 +11,15 @@ install_docker() {
   if [[ -d "/Applications/Docker.app" ]]; then
     log_ok "Docker Desktop already installed — updating..."
     brew upgrade --cask docker
-    return
+  else
+    log_info "Installing Docker Desktop..."
+    brew install --cask docker
   fi
 
-  log_info "Installing Docker Desktop..."
-  brew install --cask docker
-
-  if [[ -d "/Applications/Docker.app" ]]; then
-    log_ok "Docker Desktop installed successfully."
-  else
+  if [[ ! -d "/Applications/Docker.app" ]]; then
     log_error "Docker Desktop installation failed — app not found in /Applications."
     return 1
   fi
+
+  log_ok "Docker Desktop installed successfully."
 }
