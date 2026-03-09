@@ -18,6 +18,39 @@ install_ohmyzsh() {
 
   log_ok "Oh My Zsh installed successfully."
   _ohmyzsh_copy_custom
+  _ohmyzsh_install_p10k
+}
+
+_ohmyzsh_install_p10k() {
+  local p10k_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"
+  local zshrc="$HOME/.zshrc"
+
+  if [[ -d "$p10k_dir" ]]; then
+    log_ok "powerlevel10k already installed — updating..."
+    git -C "$p10k_dir" pull --ff-only
+  else
+    log_info "Installing powerlevel10k theme..."
+    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$p10k_dir"
+  fi
+
+  if [[ ! -d "$p10k_dir" ]]; then
+    log_error "powerlevel10k installation failed — theme directory not found."
+    return 1
+  fi
+
+  log_ok "powerlevel10k installed."
+
+  # Set ZSH_THEME in ~/.zshrc
+  if grep -q '^ZSH_THEME=' "$zshrc"; then
+    if grep -q '^ZSH_THEME="powerlevel10k/powerlevel10k"' "$zshrc"; then
+      log_ok "ZSH_THEME already set to powerlevel10k."
+    else
+      sed -i '' 's|^ZSH_THEME=.*|ZSH_THEME="powerlevel10k/powerlevel10k"|' "$zshrc"
+      log_ok "ZSH_THEME updated to powerlevel10k/powerlevel10k in ~/.zshrc."
+    fi
+  else
+    log_warn "ZSH_THEME line not found in ~/.zshrc — could not set powerlevel10k theme."
+  fi
 }
 
 _ohmyzsh_copy_custom() {
