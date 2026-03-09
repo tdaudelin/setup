@@ -21,6 +21,7 @@ fi
 # ---------------------------------------------------------------------------
 
 TOOLS=(
+  "ohmyzsh|Oh My Zsh!|Framework for managing zsh configuration"
   "brew|Homebrew|Package manager for macOS"
   "mise|mise-en-place|Polyglot runtime version manager (replaces nvm, pyenv, etc.)"
   "vscode|Visual Studio Code|Code editor by Microsoft"
