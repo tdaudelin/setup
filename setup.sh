@@ -23,12 +23,14 @@ fi
 TOOLS=(
   "brew|Homebrew|Package manager for macOS"
   "mise|mise-en-place|Polyglot runtime version manager (replaces nvm, pyenv, etc.)"
-  "docker|Docker Desktop|Containerisation platform"
   "vscode|Visual Studio Code|Code editor by Microsoft"
-  "jetbrains|JetBrains Toolbox|Launcher and updater for JetBrains IDEs"
-  "awscli|AWS CLI|Command-line interface for Amazon Web Services"
-  "jq|jq|Lightweight command-line JSON processor"
   "insomnia|Insomnia|REST / GraphQL API client"
+  "jetbrains|JetBrains Toolbox|Launcher and updater for JetBrains IDEs"
+  "docker|Docker Desktop|Containerisation platform"
+  "awscli|AWS CLI|Command-line interface for Amazon Web Services"
+  "azure-cli|Azure CLI|Command-line interface for Microsoft Azure"
+  "gcloud-cli|Google Cloud CLI|Command-line interface for Google Cloud Platform"
+  "jq|jq|Lightweight command-line JSON processor"
 )
 
 # ---------------------------------------------------------------------------
