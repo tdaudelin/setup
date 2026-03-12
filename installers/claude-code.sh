@@ -11,6 +11,7 @@ install_claude-code() {
 
   log_info "Installing Claude Code..."
   curl -fsSL https://claude.ai/install.sh | bash
+  PATH="$HOME/.local/bin:$PATH"
 
   if ! command -v claude &>/dev/null; then
     log_error "Claude Code installation failed — 'claude' command not found."
