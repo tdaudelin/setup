@@ -21,18 +21,25 @@ fi
 # ---------------------------------------------------------------------------
 
 TOOLS=(
+  # Shell & Package Management
   "ohmyzsh|Oh My Zsh!|Framework for managing zsh configuration"
   "brew|Homebrew|Package manager for macOS"
   "mise|mise-en-place|Polyglot runtime version manager (replaces nvm, pyenv, etc.)"
+  # Editors & AI
   "vscode|Visual Studio Code|Code editor by Microsoft"
-  "insomnia|Insomnia|REST / GraphQL API client"
+  "claude-code|Claude Code|Anthropic Claude Code terminal app (native install)"
   "jetbrains|JetBrains Toolbox|Launcher and updater for JetBrains IDEs"
+  # Browsers
+  "firefox|Firefox|Mozilla Firefox web browser"
+  # Dev Tools
   "docker|Docker Desktop|Containerisation platform"
+  "git|git|Latest git from Homebrew (replaces outdated macOS default)"
+  "jq|jq|Lightweight command-line JSON processor"
+  # API & Cloud
+  "insomnia|Insomnia|REST / GraphQL API client"
   "awscli|AWS CLI|Command-line interface for Amazon Web Services"
   "azure-cli|Azure CLI|Command-line interface for Microsoft Azure"
   "gcloud-cli|Google Cloud CLI|Command-line interface for Google Cloud Platform"
-  "jq|jq|Lightweight command-line JSON processor"
-  "git|git|Latest git from Homebrew (replaces outdated macOS default)"
 )
 
 # ---------------------------------------------------------------------------
