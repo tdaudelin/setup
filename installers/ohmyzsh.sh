@@ -54,7 +54,7 @@ _ohmyzsh_install_p10k() {
 }
 
 _ohmyzsh_copy_custom() {
-  local custom_src="$HOME/setup/custom"
+  local custom_src="$HOME/.setup/custom"
   local custom_dst="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 
   if [[ ! -d "$custom_src" ]]; then
