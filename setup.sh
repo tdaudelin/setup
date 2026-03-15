@@ -34,7 +34,7 @@ TOOLS=(
   # Dev Tools
   "docker|Docker Desktop|Containerisation platform"
   "git|git|Latest git from Homebrew (replaces outdated macOS default)"
-  "jq|jq|Lightweight command-line JSON processor"
+  "dev-tools|Misc Dev Tools|Small CLI tools: jq, tmux"
   # API & Cloud
   "insomnia|Insomnia|REST / GraphQL API client"
   "awscli|AWS CLI|Command-line interface for Amazon Web Services"
