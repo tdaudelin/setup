@@ -27,7 +27,7 @@ TOOLS=(
   "mise|mise-en-place|Polyglot runtime version manager (replaces nvm, pyenv, etc.)"
   # Editors & AI
   "vscode|Visual Studio Code|Code editor by Microsoft"
-  "claude-code|Claude Code|Anthropic Claude Code terminal app (native install)"
+  "claude|Claude|Claude Code CLI (native install) + Claude Desktop app for macOS"
   "jetbrains|JetBrains Toolbox|Launcher and updater for JetBrains IDEs"
   # Browsers
   "firefox|Firefox|Mozilla Firefox web browser"
